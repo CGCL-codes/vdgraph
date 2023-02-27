@@ -230,7 +230,7 @@ class ExplainerBase(nn.Module):
             important_indices.append(indice)
             number += 1
 #
-        out_path = '/home/DIG-main/dig/xgraph/DeepLIFT/rq2_res/15/ivdetect/' + name[0]
+        out_path = 'input save path!!!' + name[0]###
         with open(out_path, 'w') as wp:
             json.dump(important_indices, wp)
         return None
