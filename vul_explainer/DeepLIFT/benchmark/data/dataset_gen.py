@@ -245,7 +245,7 @@ class Devign(InMemoryDataset):
         #           '/home/devign_out/devign_out_qu_novul/','/home/devign_out/devign_out_qu_vul/']
         #for path in dataset_path:
         #dataset_list = glob.glob(path + '*.json')
-        with open('/home/GNNLRP_model/data/all_interpreter.txt','r') as f:##
+        with open('input the vulnerability graph to be explained!!!','r') as f:##
             dataset_list = f.readlines()
         random.shuffle(dataset_list)
         i = 0
