@@ -113,10 +113,6 @@ elif args['common'].task == 'explain':
         else:
             for index, data in tqdm(enumerate(loader['explain'])):
                 print(f'#IN#explain graph line {loader["explain"].dataset.indices[index] + 2}')
-                name = '/home/DIG-main/dig/xgraph/GNN-LRP/rq2_res/5/reveal/'+ data.name[0]
-                if os.path.exists(name):
-                    print(data.name[0]+'has been processed')
-                    continue
                 sample_explain(explainer, data, explain_collector, sparsity=args['explain'].sparsity)
 
                 if index >= 2000:
