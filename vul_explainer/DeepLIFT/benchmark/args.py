@@ -22,7 +22,7 @@ class GeneralArgs(Tap):
     test_bs: int = 1                  # batch size for test
     x_bs: int = 1                        # batch size for explain
     dataset_name: str = 'devign'              # dataset
-    model_name: str = 'GCN_simplify2'  # specify model name
+    model_name: str = 'DeepWukong'  # specify model name
     explainer: str = 'DeepLIFT'
     dataset_type: Literal['nlp', 'mol'] = 'mol'  # dataset type
     model_level: Literal['node', 'line', 'graph'] = 'graph'  # model level
@@ -76,15 +76,7 @@ class TestArgs(GeneralArgs):
             #     os.path.join(ROOT_DIR, 'checkpoints', self.dataset_name,
             #                  self.model_name, str(self.target_idx),
             #                  f'{self.model_name}_best.ckpt')
-            #self.test_ckpt = '/home/GNNLRP_model/model_com/ggnn_simplify/gnn_53.72_74.33_62.24.ckpt'
-            self.test_ckpt = '/home/GNNLRP_model/model_com/ivdetect/gnn_52.51_86.18_65.07.ckpt'
-            #self.test_ckpt = '/home/GNNLRP_model/model_com/reveal/gnn_52.42_82.08_63.91.ckpt'
-            #self.test_ckpt = '/home/GNNLRP_model/model_com/deepwukong/gnn_53.32_78.15_63.21.ckpt'
-
-            #self.test_ckpt = '/home/GNNLRP_model/mod_model/deepwukong/mod_mix52.94_75.34_62.17.ckpt'
-            #self.test_ckpt = '/home/GNNLRP_model/mod_model/ivdetect/mod_dropout0552.54_86.63_65.2.ckpt'
-            #self.test_ckpt = '/home/GNNLRP_model/mod_model/reveal/mod_mix53.37_66.85_59.54.ckpt'
-            #self.test_ckpt = '/home/GNNLRP_model/mod_model/ggnn_simplify/mod_mix52.94_68.76_60.0.ckpt'
+            #self.test_ckpt = 'input the trained model path like ckpt'
             
 
 
