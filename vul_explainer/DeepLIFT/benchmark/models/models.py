@@ -450,7 +450,7 @@ class GraphSequential(nn.Sequential):
                 input = module(input)
         return input
 
-class GGNN_simplify(nn.Module):
+class Devign_simplify(nn.Module):
     def __init__(self, output_dim=200, num_steps=6):
         super().__init__()
         self.out_dim = output_dim #200
@@ -473,7 +473,7 @@ class GGNN_simplify(nn.Module):
         result = self.sigmoid(avg)
         return result
 
-class GCN_simplify2(nn.Module):
+class IVDetect_simplify(nn.Module):
 
     def __init__(self, output_dim=200, input_dim=100):
         super().__init__()
