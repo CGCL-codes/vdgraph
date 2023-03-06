@@ -37,7 +37,7 @@ Please check all requirements in the requirement.txt
 ## Use interpreter to give Interpretation
 1.All interpreter in ```vul_explainer ```file folder.
 
-2.All interpreter has its readme.You can refer it.We have ## to point out which one need to modify.
+2.All interpreter has its readme.You can refer it. We give '##' to point out which one need to modify.
 
 3.In DeepLIFT,GNN-LRP,GNNExplainer,GradCAM:you need to modify ```benchmark/args.py```,```benchmark/data/dataset_gen.py ```,```benchmark/models/explainers.py``` and run ```benchmark/kernel/pipeline.py```
 
