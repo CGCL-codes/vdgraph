@@ -22,7 +22,7 @@ Please check all requirements in the requirement.txt
   
 4.Run preprocess file folder ```train_w2v.py``` to get trained w2v model.
 
-5.Run preprocess file folder ```joern_to_devign.py``` to get the data required by the VD model
+5.Run preprocess file folder ```joern_to_devign.py``` to get the data required by the VD model.
 
 
 ## Training of vulnerability detection model
