@@ -1,4 +1,4 @@
-# DeepWukong
+# VDE
 
 > (ISSTA'23) Interpreters for GNN-based Vulnerability Detection: Are We There Yet?
 
