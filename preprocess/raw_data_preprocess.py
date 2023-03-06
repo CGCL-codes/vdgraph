@@ -1,3 +1,4 @@
+import json,csv
 import pandas as pd
 import os
 import difflib
@@ -44,10 +45,14 @@ def main():
     dataset_path_output = 'dataset_test/'
     label_pkl_file = 'test_label_pkl.pkl'
     
-    filter_csv_path = dataset_path + raw_data_path + filter_data_filename
+    #filter_csv_path = dataset_path + raw_data_path + filter_data_filename
+    filter_csv_path = '/home/MSR_data_cleaned_pairs.csv'
     raw_csv_path = dataset_path + raw_data_path + raw_data_filename
-    output_path = dataset_path + dataset_path_output
-    pkl_path = dataset_path + label_pkl_file
+    #output_path = dataset_path + dataset_path_output
+    out_path_before = '/home/Dataset/msr/0-src/vul_nocwe'
+    out_path_after = '/home/Dataset/msr/0-src/novul_nocwe'
+    #pkl_path = dataset_path + label_pkl_file
+    json_path = '/home/nvd_label.json'
 
     pd_filter = process_raw_data(filter_csv_path, raw_csv_path)
     file_cnt = pd_filter.shape[0]
@@ -56,44 +61,61 @@ def main():
     cnt_1 = 0
 
     for index, row in pd_filter.iterrows():
+    
         file_num += 1
         print(str(file_cnt) + ' / ' + str(file_num))
+        cve_id = row['CVE ID']
+        cwe_id = row['CWE ID']
         project_name = row["project"]
         hash_vaule = row['commit_id']
-        file_name = project_name + "_" + hash_vaule
-        outfile = output_path + file_name
+        flag_W=0
+        try:
+            file_name = cve_id + "_" + project_name + "_" + cwe_id + "_" + hash_vaule
+        except:
+            #continue
+            flag_W=1
+            try:
+                file_name = cve_id + "_" + project_name + "_"  + hash_vaule
+            except:
+                continue
+        # 0_CVE-2015-8467_samba_CWE-264_b000da128b5fb519d2d3f2e7fd20e4a25b7dae7d
+        #outfile = output_path + file_name
+        outfile = file_name
 
-        file_name_cnt = 0
+        file_name_cnt = 1
         outfile_new = outfile
         while outfile_new in label_dict.keys():
             outfile_new = outfile + '_' + str(file_name_cnt)
             file_name_cnt += 1
-
-        if not os.path.exists(outfile_new):
-            os.mkdir(outfile_new)
-
         label_dict[outfile_new] = []
+        #outfile_new = outfile_new+'.c'
+        # if not os.path.exists(outfile_new):
+        #     os.mkdir(outfile_new)
+
 
         func_before = row['func_before']
         func_after = row["func_after"]
-        vul_file_name = '1_'+ file_name + '.c'
-        novul_file_name = '0_' + file_name+ '.c'
+        vul_file_name = '1_'+ outfile_new
+        novul_file_name = '0_' + outfile_new
 
-        with open(outfile_new + '/'+ vul_file_name, 'w', encoding='utf-8') as f_vul:
-            f_vul.write(func_before)
-            cnt_1 += 1
+        if flag_W==1:
+            with open(out_path_before + '/'+ vul_file_name+'.c', 'w', encoding='utf-8') as f_vul:
+                f_vul.write(func_before)
+                cnt_1 += 1
 
-        with open(outfile_new + '/' + novul_file_name, 'w', encoding='utf-8') as f_novul:
-            f_novul.write(func_after)
-            cnt_1 += 1
+            with open(out_path_after + '/' + novul_file_name+'.c', 'w', encoding='utf-8') as f_novul:
+                f_novul.write(func_after)
+                cnt_1 += 1
 
-        if pd.isnull(row['lines_before']):
-            label_dict[outfile_new] = ['']
-        else:
-            label(func_before, func_after, label_dict, outfile_new)
+        #if pd.isnull(row['lines_before']):
+        #    label_dict[outfile_new] = ['']
+        #else:
+        label(func_before, func_after, label_dict, outfile_new) 
 
-    with open(pkl_path,'wb') as f:
-        pickle.dump(label_dict, f)
+    #with open(pkl_path,'wb') as f:
+    #    pickle.dump(label_dict, f)
+    with open(json_path,'w') as f:
+        json.dump(label_dict, f)
 
     print(cnt_1)
 
