@@ -5,7 +5,7 @@
 ## Dataset
 
 The Dataset we used in the paper:
-Fan et al.[1]: https://drive.google.com/file/d/1-0VhnHBp9IGh90s2wCNjeCMuy70HPl8X/view?usp=sharing
+Fan et al / MSR'20: https://drive.google.com/file/d/1-0VhnHBp9IGh90s2wCNjeCMuy70HPl8X/view?usp=sharing
 
 ## Requirement
 
