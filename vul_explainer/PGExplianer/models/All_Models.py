@@ -68,7 +68,7 @@ class Devign_simplify(nn.Module):
         #pooled = self.readout(outputs, batch)
         avg = self.classifier(pooled)
         result = self.sigmoid(avg)
-        return result, x
+        return result, outputs
 
 class IVDetect_simplify(nn.Module):
 
@@ -100,7 +100,7 @@ class IVDetect_simplify(nn.Module):
         #pooled = self.readout(post_conv, batch)
         y_a = self.__classifier(pooled)
         result = self.softmax(y_a)
-        return result, x
+        return result, post_conv
 
 class DeepWukong(nn.Module):
     def __init__(self, output_dim=200, input_dim=100):
@@ -132,7 +132,7 @@ class DeepWukong(nn.Module):
         hiddens = self.__hidden_layers(pooled)
         avg = self.__classifier(hiddens) 
         result = self.softmax(avg)             
-        return result, x
+        return result, outputs
 
 class ExtractFeature(nn.Module):
     def __init__(self,input_dim=200, out_dim=400, num_layers=1):
@@ -187,4 +187,4 @@ class RevealModel(nn.Module):
         h_a = self.extract_feature(pooled)
         y_a = self.__classifier(h_a)
         #result = self.softmax(y_a)
-        return y_a, x
+        return y_a, outputs
